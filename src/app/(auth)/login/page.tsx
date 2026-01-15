@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -29,6 +29,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const errorRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -37,6 +38,12 @@ export default function LoginPage() {
       password: "",
     },
   });
+
+  useEffect(() => {
+    if (error && errorRef.current) {
+      errorRef.current.focus();
+    }
+  }, [error]);
 
   async function onSubmit(values: LoginFormValues) {
     setIsLoading(true);
@@ -49,28 +56,33 @@ export default function LoginPage() {
       });
 
       if (result.error) {
-        setError(result.error.message || "Credenciais inválidas");
+        setError(
+          result.error.message || 
+          "Email ou senha incorretos. Verifique suas credenciais e tente novamente."
+        );
         return;
       }
 
       router.push("/dashboard");
     } catch  {
-      setError("Erro ao fazer login. Tente novamente.");
+      setError(
+        "Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente."
+      );
     } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2 text-center">
+    <main id="main-content" className="flex flex-col gap-6">
+      <header className="flex flex-col gap-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Bem-vindo de volta
         </h1>
         <p className="text-sm text-muted-foreground">
           Entre com suas credenciais para acessar sua conta
         </p>
-      </div>
+      </header>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -113,18 +125,29 @@ export default function LoginPage() {
           />
 
           {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+            <div 
+              ref={errorRef}
+              tabIndex={-1}
+              role="alert" 
+              aria-live="polite"
+              className="rounded-md bg-destructive/10 p-3 text-sm text-destructive outline-none"
+            >
               {error}
             </div>
           )}
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button 
+            type="submit" 
+            className="w-full" 
+            disabled={isLoading}
+            aria-busy={isLoading}
+          >
             {isLoading ? "Entrando..." : "Entrar"}
           </Button>
         </form>
       </Form>
 
-      <div className="text-center text-sm">
+      <footer className="text-center text-sm">
         Não tem uma conta?{" "}
         <Link
           href="/register"
@@ -132,7 +155,7 @@ export default function LoginPage() {
         >
           Registre-se
         </Link>
-      </div>
-    </div>
+      </footer>
+    </main>
   );
 }
