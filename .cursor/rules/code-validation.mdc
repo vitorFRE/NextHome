@@ -1,0 +1,45 @@
+---
+description: Run lint, type check, and build before finalizing any code changes
+alwaysApply: true
+---
+
+# Code Validation Before Finalization
+
+Before suggesting or finalizing any code changes, always run the following validation checks:
+
+## Required Checks
+
+1. **Run lint check**:
+
+   ```bash
+   pnpm lint
+   ```
+
+   Or if the script doesn't exist:
+
+   ```bash
+   npx eslint .
+   ```
+
+2. **Run TypeScript type check**:
+
+   ```bash
+   npx tsc --noEmit
+   ```
+
+3. **Run build (if applicable)**:
+   ```bash
+   npm run build
+   ```
+   Only run this if the project has a build script and it's relevant to the changes made.
+
+## Process
+
+- Execute these checks **before** presenting final code to the user
+- If any check fails, fix the issues before finalizing
+- Report any errors found and resolve them
+- Only mark code as complete after all checks pass
+
+## Exception
+
+If the user explicitly requests to skip validation or is working on a draft/WIP, you may proceed, but always mention that validation should be run before merging/deploying.

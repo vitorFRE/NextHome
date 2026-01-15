@@ -1,0 +1,41 @@
+---
+description: Always check latest package versions before suggesting npm install
+alwaysApply: true
+---
+
+# Package Version Checking
+
+Before suggesting `npm install` (or `pnpm install`, `yarn add`, etc.) for any package, always check the latest available version first.
+
+## Process
+
+1. **Check available versions** using:
+   ```bash
+   npm view <package-name> versions
+   ```
+   Or for the latest version only:
+   ```bash
+   npm view <package-name> version
+   ```
+
+2. **Recommend the most recent stable version** explicitly in the install command:
+   ```bash
+   npm install <package-name>@<latest-version>
+   ```
+
+3. **Avoid suggesting** generic install commands without version numbers unless the user explicitly requests it.
+
+## Example
+
+❌ **BAD**: 
+```
+npm install react-query
+```
+
+✅ **GOOD**: 
+```bash
+# First check: npm view react-query version
+npm install react-query@5.17.0
+```
+
+This ensures users always get the latest stable version and helps prevent version-related issues.
