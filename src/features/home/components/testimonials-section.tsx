@@ -22,7 +22,7 @@ function renderStars(rating: number) {
 export function TestimonialsSection() {
   return (
     <section
-      className="bg-gradient-to-b from-muted/30 to-background py-20"
+      className="bg-linear-to-b from-muted/30 to-background py-20"
       aria-labelledby="testimonials-heading"
     >
       <div className="container mx-auto px-4">

@@ -15,4 +15,5 @@ export interface Property {
   image: string;
   featured: boolean;
   createdAt: Date;
+  description?: string;
 }

@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 
 import { Header } from "@/src/components/layout/header";
 import { Footer } from "@/src/components/layout/footer";
-import { HeroSection } from "@/src/components/home/hero-section";
-import { FeaturedProperties } from "@/src/components/home/featured-properties";
-import { RecentProperties } from "@/src/components/home/recent-properties";
-import { PropertyCategories } from "@/src/components/home/property-categories";
-import { StatsSection } from "@/src/components/home/stats-section";
-import { AboutSection } from "@/src/components/home/about-section";
-import { TestimonialsSection } from "@/src/components/home/testimonials-section";
+import { HeroSection } from "@/src/features/home/components/hero-section";
+import { FeaturedProperties } from "@/src/features/home/components/featured-properties";
+import { RecentProperties } from "@/src/features/home/components/recent-properties";
+import { PropertyCategories } from "@/src/features/home/components/property-categories";
+import { StatsSection } from "@/src/features/home/components/stats-section";
+import { AboutSection } from "@/src/features/home/components/about-section";
+import { TestimonialsSection } from "@/src/features/home/components/testimonials-section";
 
 export const metadata: Metadata = {
   title: "NextHome - Encontre o Imóvel dos Seus Sonhos",

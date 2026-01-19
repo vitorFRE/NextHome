@@ -1,4 +1,4 @@
-import type { Property } from "@/src/types/property";
+import type { Property, PropertyType } from "@/src/types/property";
 
 export const mockProperties: Property[] = [
   {
@@ -16,6 +16,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
     featured: true,
     createdAt: new Date("2024-01-15"),
+    description:
+      "Casa moderna e espaçosa com piscina, ideal para quem busca conforto e lazer. Localizada em bairro tranquilo, possui ampla área de lazer e acabamento de primeira qualidade.",
   },
   {
     id: "2",
@@ -32,6 +34,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
     featured: true,
     createdAt: new Date("2024-01-20"),
+    description:
+      "Apartamento luxuoso em uma das principais avenidas de São Paulo. Com vista panorâmica, acabamentos premium e localização privilegiada, próximo a tudo.",
   },
   {
     id: "3",
@@ -48,6 +52,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
     featured: false,
     createdAt: new Date("2024-01-25"),
+    description:
+      "Casa de campo espaçosa com chácara, perfeita para quem busca tranquilidade e contato com a natureza. Ideal para famílias grandes ou para investimento em turismo rural.",
   },
   {
     id: "4",
@@ -64,6 +70,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
     featured: false,
     createdAt: new Date("2024-01-28"),
+    description:
+      "Apartamento compacto e moderno, ideal para jovens profissionais ou casais. Bem localizado, com fácil acesso ao transporte público e comércio.",
   },
   {
     id: "5",
@@ -80,6 +88,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
     featured: false,
     createdAt: new Date("2024-02-01"),
+    description:
+      "Terreno residencial de 500m² em localização estratégica, com fácil acesso e infraestrutura completa. Perfeito para construir o imóvel dos seus sonhos.",
   },
   {
     id: "6",
@@ -96,6 +106,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
     featured: true,
     createdAt: new Date("2024-02-05"),
+    description:
+      "Sala comercial em uma das principais avenidas de São Paulo, com excelente localização e infraestrutura completa. Ideal para empresas que buscam prestígio e visibilidade.",
   },
   {
     id: "7",
@@ -112,6 +124,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop",
     featured: false,
     createdAt: new Date("2024-02-10"),
+    description:
+      "Casa térrea aconchegante com quintal amplo, perfeita para famílias que valorizam espaço e tranquilidade. Bairro residencial com excelente qualidade de vida.",
   },
   {
     id: "8",
@@ -128,6 +142,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&h=600&fit=crop",
     featured: true,
     createdAt: new Date("2024-02-12"),
+    description:
+      "Cobertura de alto padrão com vista panorâmica da cidade, acabamentos luxuosos e área de lazer completa. O imóvel dos sonhos para quem busca exclusividade e conforto.",
   },
 ];
 
@@ -138,3 +154,30 @@ export const getRecentProperties = () =>
   [...mockProperties]
     .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
     .slice(0, 6);
+
+export const getPropertyById = (id: string): Property | undefined => {
+  return mockProperties.find((p) => p.id === id);
+};
+
+export const getRelatedProperties = (
+  propertyId: string,
+  type: Property["type"],
+  limit: number = 3
+): Property[] => {
+  return mockProperties
+    .filter((p) => p.id !== propertyId && p.type === type)
+    .slice(0, limit);
+};
+
+export const getProperties = (tipo?: string): Property[] => {
+  if (!tipo) {
+    return [...mockProperties];
+  }
+
+  const validTypes: PropertyType[] = ["casa", "apartamento", "terreno", "comercial"];
+  if (validTypes.includes(tipo as PropertyType)) {
+    return mockProperties.filter((p) => p.type === tipo);
+  }
+
+  return [...mockProperties];
+};

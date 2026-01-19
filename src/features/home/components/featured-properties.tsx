@@ -1,25 +1,25 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getRecentProperties } from "@/src/lib/mock-data/properties";
-import { PropertyCard } from "./property-card";
+import { getFeaturedProperties } from "@/src/lib/mock-data/properties";
+import { PropertyCard } from "@/src/features/property/components/property-card";
 import { Button } from "@/src/components/ui/button";
 
-export function RecentProperties() {
-  const recentProperties = getRecentProperties();
+export function FeaturedProperties() {
+  const featuredProperties = getFeaturedProperties().slice(0, 3);
 
   return (
-    <section className="bg-gradient-to-b from-background to-muted/30 py-20" aria-labelledby="recent-properties-heading">
+    <section className="py-20" aria-labelledby="featured-properties-heading">
       <div className="container mx-auto px-4">
         <div className="mb-12 flex items-center justify-between">
           <div>
             <h2
-              id="recent-properties-heading"
+              id="featured-properties-heading"
               className="text-3xl font-bold md:text-4xl lg:text-5xl"
             >
-              Imóveis Recentes
+              Imóveis em Destaque
             </h2>
             <p className="mt-3 text-lg text-muted-foreground">
-              Novas oportunidades adicionadas recentemente
+              Propriedades selecionadas especialmente para você
             </p>
           </div>
           <Button variant="outline" asChild className="hidden md:flex rounded-xl">
@@ -30,16 +30,16 @@ export function RecentProperties() {
           </Button>
         </div>
 
-        {recentProperties.length > 0 ? (
+        {featuredProperties.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {recentProperties.map((property: typeof recentProperties[0]) => (
+            {featuredProperties.map((property: typeof featuredProperties[0]) => (
               <PropertyCard key={property.id} property={property} />
             ))}
           </div>
         ) : (
           <div className="py-12 text-center">
             <p className="text-muted-foreground">
-              Nenhum imóvel recente no momento.
+              Nenhum imóvel em destaque no momento.
             </p>
           </div>
         )}

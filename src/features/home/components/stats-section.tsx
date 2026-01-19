@@ -18,7 +18,7 @@ function formatNumber(value: number): string {
 
 export function StatsSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-muted/40 to-background py-20" aria-labelledby="stats-heading">
+    <section className="relative overflow-hidden bg-linear-to-b from-muted/40 to-background py-20" aria-labelledby="stats-heading">
       <div className="container mx-auto px-4">
         <h2 id="stats-heading" className="sr-only">
           Nossos números
