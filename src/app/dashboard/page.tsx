@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StatsCards } from "@/src/features/dashboard/components/stats-cards";
+import { RecentPropertiesTable } from "@/src/features/dashboard/components/recent-properties-table";
 
 export const metadata: Metadata = {
   title: "Dashboard Administrativo - NextHome",
@@ -7,11 +9,12 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <main id="main-content" className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-      <p className="text-muted-foreground">
-        Bem-vindo ao painel de controle do sistema.
-      </p>
-    </main>
+    <>
+      <StatsCards />
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">Imóveis recentes</h2>
+        <RecentPropertiesTable />
+      </div>
+    </>
   );
 }
