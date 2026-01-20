@@ -68,14 +68,14 @@ export default function RegisterPage() {
 
       if (result.error) {
         setError(
-          result.error.message || 
-          "Não foi possível criar sua conta. Este email pode já estar em uso. Tente fazer login ou use outro email."
+          result.error.message ||
+            "Não foi possível criar sua conta. Este email pode já estar em uso. Tente fazer login ou use outro email."
         );
         return;
       }
 
-      router.push("/dashboard");
-    } catch  {
+      router.push("/");
+    } catch {
       setError(
         "Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente."
       );
@@ -85,28 +85,26 @@ export default function RegisterPage() {
   }
 
   return (
-    <main id="main-content" className="flex flex-col gap-6">
-      <header className="flex flex-col gap-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Criar uma conta
-        </h1>
-        <p className="text-sm text-muted-foreground">
+    <main id='main-content' className='flex flex-col gap-6'>
+      <header className='flex flex-col gap-2 text-center'>
+        <h1 className='text-2xl font-semibold tracking-tight'>Criar uma conta</h1>
+        <p className='text-sm text-muted-foreground'>
           Preencha os dados abaixo para criar sua conta
         </p>
       </header>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome</FormLabel>
                 <FormControl>
                   <Input
-                    type="text"
-                    placeholder="Seu nome completo"
+                    type='text'
+                    placeholder='Seu nome completo'
                     disabled={isLoading}
                     {...field}
                   />
@@ -118,14 +116,14 @@ export default function RegisterPage() {
 
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    type="email"
-                    placeholder="seu@email.com"
+                    type='email'
+                    placeholder='seu@email.com'
                     disabled={isLoading}
                     {...field}
                   />
@@ -137,20 +135,20 @@ export default function RegisterPage() {
 
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
                   <Input
-                    type="password"
-                    placeholder="••••••••"
+                    type='password'
+                    placeholder='••••••••'
                     disabled={isLoading}
-                    aria-describedby="password-requirements"
+                    aria-describedby='password-requirements'
                     {...field}
                   />
                 </FormControl>
-                <PasswordRequirements id="password-requirements" />
+                <PasswordRequirements id='password-requirements' />
                 <FormMessage />
               </FormItem>
             )}
@@ -158,14 +156,14 @@ export default function RegisterPage() {
 
           <FormField
             control={form.control}
-            name="confirmPassword"
+            name='confirmPassword'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Confirmar senha</FormLabel>
                 <FormControl>
                   <Input
-                    type="password"
-                    placeholder="••••••••"
+                    type='password'
+                    placeholder='••••••••'
                     disabled={isLoading}
                     {...field}
                   />
@@ -176,20 +174,20 @@ export default function RegisterPage() {
           />
 
           {error && (
-            <div 
+            <div
               ref={errorRef}
               tabIndex={-1}
-              role="alert" 
-              aria-live="polite"
-              className="rounded-md bg-destructive/10 p-3 text-sm text-destructive outline-none"
+              role='alert'
+              aria-live='polite'
+              className='rounded-md bg-destructive/10 p-3 text-sm text-destructive outline-none'
             >
               {error}
             </div>
           )}
 
-          <Button 
-            type="submit" 
-            className="w-full" 
+          <Button
+            type='submit'
+            className='w-full'
             disabled={isLoading}
             aria-busy={isLoading}
           >
@@ -198,12 +196,9 @@ export default function RegisterPage() {
         </form>
       </Form>
 
-      <footer className="text-center text-sm">
+      <footer className='text-center text-sm'>
         Já tem uma conta?{" "}
-        <Link
-          href="/login"
-          className="font-medium text-primary hover:underline"
-        >
+        <Link href='/login' className='font-medium text-primary hover:underline'>
           Faça login
         </Link>
       </footer>
