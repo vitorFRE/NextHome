@@ -23,22 +23,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Header />
-      <main id="main-content" role="main">
+      <main id='main-content' role='main'>
         <HeroSection />
-        <Suspense fallback={<div className="py-16 text-center">Carregando...</div>}>
+        <Suspense fallback={<div className='py-16 text-center'>Carregando...</div>}>
           <FeaturedProperties />
         </Suspense>
         <PropertyCategories />
-        <Suspense fallback={<div className="py-16 text-center">Carregando...</div>}>
+        <Suspense fallback={<div className='py-16 text-center'>Carregando...</div>}>
           <RecentProperties />
         </Suspense>
         <StatsSection />
         <AboutSection />
-        <Suspense fallback={<div className="py-16 text-center">Carregando...</div>}>
+        <Suspense fallback={<div className='py-16 text-center'>Carregando...</div>}>
           <TestimonialsSection />
         </Suspense>
       </main>

@@ -1,31 +1,25 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  Home,
-  Building2,
-  Settings,
-  Building,
-  MapPin,
-} from "lucide-react"
+import * as React from "react";
+import { Home, Building2, Settings, Building, MapPin } from "lucide-react";
 
-import { NavMain } from "@/src/components/sidebar/nav-main"
-import { NavProjects } from "@/src/components/sidebar/nav-projects"
-import { NavUser } from "@/src/components/sidebar/nav-user"
-import { TeamSwitcher } from "@/src/components/sidebar/team-switcher"
+import { NavMain } from "@/src/components/sidebar/nav-main";
+import { NavProjects } from "@/src/components/sidebar/nav-projects";
+import { NavUser } from "@/src/components/sidebar/nav-user";
+import { TeamSwitcher } from "@/src/components/sidebar/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/src/components/ui/sidebar"
+} from "@/src/components/ui/sidebar";
 
 const data = {
   user: {
     name: "Admin",
     email: "admin@nexthome.com",
-    avatar: "/avatars/admin.jpg",
+    avatar: "https://github.com/vitorfre.png",
   },
   teams: [
     {
@@ -83,11 +77,11 @@ const data = {
       icon: MapPin,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible='icon' {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
@@ -100,5 +94,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
