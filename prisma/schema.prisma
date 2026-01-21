@@ -82,3 +82,21 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+model AnnouncementRequest {
+  id                    String   @id @default(cuid())
+  name                  String
+  email                 String
+  phone                 String?
+  message               String?
+  propertyType          String?
+  addressOrNeighborhood String?
+  bedrooms              Int?
+  bathrooms             Int?
+  area                  String?
+  purpose               String?
+  estimatedValue        String?
+  createdAt             DateTime @default(now())
+
+  @@map("announcement_request")
+}

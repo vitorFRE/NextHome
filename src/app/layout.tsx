@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SkipLink } from "@/src/components/shared/skip-link";
 import { QueryProvider } from "@/src/providers/query-provider";
+import { Toaster } from "@/src/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,6 +33,7 @@ export default function RootLayout({
         <QueryProvider>
           <SkipLink />
           {children}
+          <Toaster />
         </QueryProvider>
       </body>
     </html>
